@@ -2,10 +2,10 @@
 
 ## GROUP <add-group-name>
 
-- Member 1: <add-name>
-- Member 2: <add-name>
-- Member 3: <add-name>
-- Member 4: <add-name>
+- Member 1: Trần Bảo Trung
+- Member 2: Đỗ Minh Hải
+- Member 3: Trần Thị Ngọc Anh
+- Member 4: Phan Viết Anh Quân
 
 ## Starting server
 
@@ -18,6 +18,7 @@
 `CTRL + C`
 
 ### Bundle install
+
 Installing required libraries, you can run this command multiple time. If there is an error, let make sure this command has been executed successfully.
 
 `bundle install`

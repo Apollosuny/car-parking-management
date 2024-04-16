@@ -10,10 +10,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "subjects#index"
+  root "home#index"
 
-  resources :books
-  resources :subjects
-  resources :customers
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 end

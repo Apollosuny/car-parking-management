@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  parking_slot: one
+  vehicle: one
+  user: one
+  startTime: 2024-05-06 13:36:40
+  endTime: 2024-05-06 13:36:40
+  status: false
+
+two:
+  parking_slot: two
+  vehicle: two
+  user: two
+  startTime: 2024-05-06 13:36:40
+  endTime: 2024-05-06 13:36:40
+  status: false

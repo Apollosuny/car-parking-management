@@ -32,3 +32,15 @@ Installing required libraries, you can run this command multiple time. If there 
 ### Rails console
 
 `rails c`
+
+### Access database
+
+```bash
+docker exec -it <container_id_or_name> bash
+```
+
+Access PostgreSQL by psql
+
+```bash
+psql -U <username> -d <database_name>
+```

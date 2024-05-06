@@ -1,0 +1,37 @@
+<div class="max-w-3xl mx-auto px-4">
+  <div class="flex items-center justify-between">
+    <h1 class="flex-1 font-bold text-3xl">Vehicle_model</h1>
+
+    <div class="flex-wrap lg:flex items-center lg:space-x-3">
+      <%= link_to vehicle_models_path, class: button_class(theme: "transparent") do %>
+      All Vehicle_models
+      <% end %>
+      <%= link_to edit_vehicle_model_path(@vehicle_model), class: button_class(theme:"primary") do %>
+      Edit
+      <% end %>
+    </div>
+  </div>
+
+  <ul class="text-slate-700">
+      <li>
+        <p class="font-semibold">Brand:</p>
+        <p><%= @vehicle_model.brand %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Model:</p>
+        <p><%= @vehicle_model.model %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Year:</p>
+        <p><%= @vehicle_model.year %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Color:</p>
+        <p><%= @vehicle_model.color %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Bodytype:</p>
+        <p><%= @vehicle_model.bodyType %></p>
+      </li>
+  </ul>
+</div>

@@ -5,7 +5,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
     create_table :users do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :password, null: false, default: ""
 
       ## Recoverable
       t.string   :reset_password_token
@@ -17,14 +17,14 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false
       # t.datetime :current_sign_in_at
-      # t.datetime :last_sign_in_at
+      t.datetime :last_sign_in_at
       # t.string   :current_sign_in_ip
       # t.string   :last_sign_in_ip
 
       ## Confirmable
       # t.string   :confirmation_token
       # t.datetime :confirmed_at
-      # t.datetime :confirmation_sent_at
+      t.datetime :confirmation_sent_at
       # t.string   :unconfirmed_email # Only if using reconfirmable
 
       ## Lockable
@@ -32,11 +32,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-      t.string :first_name
-      t.string :last_name
-      t.boolean :admin, default: false
-
       t.timestamps null: false
+      t.boolean :status, default: true
     end
 
     add_index :users, :email,                unique: true

@@ -1,0 +1,42 @@
+<%= form_with(model: vehicle_model) do |form| %>
+<% if vehicle_model.errors.any? %>
+<div id="error_explanation" class="bg-red-50 p-6 rounded text-red-800">
+  <h2 class="text-lg font-semibold mb-3"><%= pluralize(vehicle_model.errors.count, "error") %> prohibited this vehicle_model from being saved:</h2>
+
+  <ul class="list-disc leading-relaxed">
+    <% vehicle_model.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+  <div class="mb-6">
+        <%= form.label :brand, class: label_class %>
+          <%= form.text_field :brand, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :model, class: label_class %>
+          <%= form.text_field :model, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :year, class: label_class %>
+          <%= form.text_field :year, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :color, class: label_class %>
+          <%= form.text_field :color, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :bodyType, class: label_class %>
+          <%= form.text_field :bodyType, class: input_class %>
+      </div>
+
+<%= form.submit class: button_class(theme: 'primary') %>
+
+<% if vehicle_model.persisted? %>
+<%= link_to "Cancel", vehicle_model, class: "text-neutral-700 underline inline-block ml-3" %>
+<% else %>
+<%= link_to "Cancel", vehicle_models_path, class:  "text-neutral-700 underline inline-block ml-3" %>
+<% end %>
+<% end %>

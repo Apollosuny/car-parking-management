@@ -1,16 +1,27 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  authenticate :user, ->(u) { u.admin? } do
+  authenticate :user, ->(u) { u.role == 'admin' } do
+    resources :parking_slots
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  authenticate :user do 
+    # Defines route
+    root "home#index"
+    resources :vehicles
+    resources :vehicle_models, only: [:index]
+    resources :bookings
+    resources :parking_slots, only: [:index, :update]
+    resources :payments
+    resources :profiles
+    # get 'home', to: 'home#index'
+    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  end
+
+  
 
   devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  root "home#index"
-
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  
 end

@@ -14,11 +14,18 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  enum :role, [ :user, :admin ]
+  after_initialize :set_default_role, :if => :new_record?
+
   # Helper func
   private 
 
   def init_profile
     Profile.create(user: self)
+  end
+
+  def set_default_role
+    self.role ||= :user
   end
 
 end

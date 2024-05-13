@@ -1,0 +1,58 @@
+
+<div class="p-4 sm:ml-64">
+    <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+        <li class="me-2">
+            <%= link_to settings_path do %>
+            <div aria-current="page" class="inline-block p-4 hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Profile</div>
+            <% end %>
+        </li>
+        <li class="me-2">
+            <%= link_to settings_security_path do %>
+            <div class="inline-block p-4 active text-blue-600 bg-gray-100 rounded-t-lg dark:bg-gray-800 dark:text-blue-500">Security</div>
+            <% end %>
+        </li>
+    </ul>
+    <div class="mt-6">
+        <%= form_for(@resource, url: registration_path(@resource), html: { method: :put }, data: { turbo: false }) do |f| %>
+    
+            <%= render "devise/shared/error_messages", resource: @resource %>
+    
+            <div class="mb-6">
+            <%= f.label :username, class: label_class %>
+            <%= f.text_field :username, class: input_class %>
+            </div>
+    
+            <div class="mb-6">
+            <%= f.label :email, class: label_class %>
+            <%= f.email_field :email, autocomplete: "email", class: input_class %>
+            </div>
+    
+            <div class="mb-6">
+            <%= f.label :password, class: label_class %>
+            <%= f.password_field :password, autocomplete: "new-password", class: input_class %>
+            <p class="pt-1 text-xs italic text-gray-500"> <% if @minimum_password_length %>
+                <%= @minimum_password_length %> characters minimum <% end %> (leave blank if you don't want to change it)</p>
+            </div>
+    
+            <div class="mb-6">
+            <%= f.label :password_confirmation, class: label_class %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: input_class %>
+            </div>
+    
+            <div class="mb-6">
+            <%= f.label :current_password, class: label_class %>
+            <%= f.password_field :current_password, autocomplete: "current-password", class: input_class %>
+            <p class="pt-2 text-sm italic text-grey-dark">(we need your current password to confirm your changes)</p>
+            </div>
+    
+            <div class="mb-6">
+            <%= f.submit "Update", class: button_class(theme: "primary", variant: "expanded") %>
+            </div>
+        <% end %>
+    
+        <div class="mb-6">
+            <hr class="mb-6" />
+            <%= button_to "Cancel my account", registration_path(@resource), data: { confirm: "Are you sure?" }, method: :delete, class: button_class(variant: "small", additional_classes: "border") %>
+        </div>
+    </div>
+</div>

@@ -15,7 +15,8 @@ Rails.application.routes.draw do
     resources :parking_slots, only: [:index, :update]
     resources :payments
     resources :profiles
-    # get 'home', to: 'home#index'
+    get 'settings', to: 'settings#profile'
+    get 'settings/security', to: 'settings#security'
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   end
 

@@ -8,7 +8,9 @@
       <%= render "shared/flash_notice" %>
     </header>
 
-    <%= render "shared/side_bar" %>
+    <% if current_user %>
+      <%= render "shared/side_bar" %>
+    <% end %>
 
     <main class="flex-grow">
       <%= content_for?(:content) ? yield(:content) : yield %>

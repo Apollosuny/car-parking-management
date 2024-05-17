@@ -1,47 +1,45 @@
-
-
-
-<div class="container mx-auto px-4">
-  <div class="flex items-center justify-between flex-wrap mb-6">
-    <h1 class="text-3xl font-bold">Vehicle_models</h1>
-
-    <%= link_to new_vehicle_model_path, class: button_class(theme: "primary") do %>
-    Add New Vehicle model
-    <% end %>
+<div class="p-4 sm:ml-64">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between flex-wrap mb-6">
+      <h1 class="text-3xl font-bold">Vehicle_models</h1>
+  
+      <%= link_to new_vehicle_model_path, class: button_class(theme: "primary") do %>
+      Add New Vehicle model
+      <% end %>
+    </div>
+  
+    <table class="table-auto border-collapse border-slate-400 w-full">
+      <thead class="bg-slate-50 dark:bg-slate-700">
+        <tr>
+          
+                    <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Brand</th>
+                    <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Model</th>
+                    <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Year</th>
+                    <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Color</th>
+                    <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Bodytype</th>
+                  
+            <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left"></th>
+          
+        </tr>
+      </thead>
+  
+      <tbody>
+        <% @vehicle_models.each do |vehicle_model| %>
+        <%= content_tag :tr, id: dom_id(vehicle_model), class: dom_class(vehicle_model) do %>
+        
+  
+                <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= vehicle_model.brand %></td>
+                <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= vehicle_model.model %></td>
+                <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= vehicle_model.year %></td>
+                <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= vehicle_model.color %></td>
+                <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= vehicle_model.bodyType %></td>
+        
+        
+          <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= link_to 'Show', vehicle_model %></td>
+        
+        <% end %>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-
-  <table class="table-auto border-collapse border-slate-400 w-full">
-    <thead class="bg-slate-50 dark:bg-slate-700">
-      <tr>
-        
-                  <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Brand</th>
-                  <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Model</th>
-                  <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Year</th>
-                  <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Color</th>
-                  <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Bodytype</th>
-                
-          <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left"></th>
-        
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @vehicle_models.each do |vehicle_model| %>
-      <%= content_tag :tr, id: dom_id(vehicle_model), class: dom_class(vehicle_model) do %>
-      
-
-              <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= vehicle_model.brand %></td>
-              <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= vehicle_model.model %></td>
-              <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= vehicle_model.year %></td>
-              <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= vehicle_model.color %></td>
-              <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= vehicle_model.bodyType %></td>
-      
-      
-        <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= link_to 'Show', vehicle_model %></td>
-      
-      <% end %>
-      <% end %>
-    </tbody>
-  </table>
-</div>
 </div>

@@ -1,37 +1,46 @@
-<div class="max-w-3xl mx-auto px-4">
-  <div class="flex items-center justify-between">
-    <h1 class="flex-1 font-bold text-3xl">Vehicle</h1>
-
-    <div class="flex-wrap lg:flex items-center lg:space-x-3">
-      <%= link_to vehicles_path, class: button_class(theme: "transparent") do %>
-      All Vehicles
-      <% end %>
-      <%= link_to edit_vehicle_path(@vehicle), class: button_class(theme:"primary") do %>
-      Edit
-      <% end %>
+<div class="p-4 sm:ml-64">
+  <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+    <%= link_to vehicles_path do %>
+    <div class="flex align-items-center gap-2">
+      <div>
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
+        </svg>
+      </div>
+      <div>Back</div>
     </div>
+    <% end %>
+    <div class="flex items-center justify-between">
+      <h1 class="flex-1 font-bold text-3xl">Vehicle</h1>
+  
+      <div class="flex-wrap lg:flex items-center lg:space-x-3">
+        <%= link_to edit_vehicle_path(@vehicle), class: button_class(theme:"primary") do %>
+        Edit
+        <% end %>
+      </div>
+    </div>
+  
+    <ul class="text-slate-700">
+        <li>
+          <p class="font-semibold">Vehicle model:</p>
+          <p><%= @vehicle.vehicle_model.brand %></p>
+        </li>
+        <li>
+          <p class="font-semibold">User:</p>
+          <p><%= @vehicle.user.username %></p>
+        </li>
+        <li>
+          <p class="font-semibold">Vehicleregistrationplate:</p>
+          <p><%= @vehicle.vehicleRegistrationPlate %></p>
+        </li>
+        <li>
+          <p class="font-semibold">Description:</p>
+          <p><%= @vehicle.description %></p>
+        </li>
+        <li>
+          <p class="font-semibold">Status:</p>
+          <p><%= @vehicle.status %></p>
+        </li>
+    </ul>
   </div>
-
-  <ul class="text-slate-700">
-      <li>
-        <p class="font-semibold">Vehicle model:</p>
-        <p><%= @vehicle.vehicle_model %></p>
-      </li>
-      <li>
-        <p class="font-semibold">User:</p>
-        <p><%= @vehicle.user %></p>
-      </li>
-      <li>
-        <p class="font-semibold">Vehicleregistrationplate:</p>
-        <p><%= @vehicle.vehicleRegistrationPlate %></p>
-      </li>
-      <li>
-        <p class="font-semibold">Description:</p>
-        <p><%= @vehicle.description %></p>
-      </li>
-      <li>
-        <p class="font-semibold">Status:</p>
-        <p><%= @vehicle.status %></p>
-      </li>
-  </ul>
 </div>

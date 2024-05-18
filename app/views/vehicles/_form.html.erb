@@ -1,4 +1,4 @@
-<%= form_with(model: vehicle) do |form| %>
+<%= form_with(model: vehicle, html: { class: "max-w-sm mx-auto" }) do |form| %>
 <% if vehicle.errors.any? %>
 <div id="error_explanation" class="bg-red-50 p-6 rounded text-red-800">
   <h2 class="text-lg font-semibold mb-3"><%= pluralize(vehicle.errors.count, "error") %> prohibited this vehicle from being saved:</h2>
@@ -12,31 +12,33 @@
 <% end %>
 
   <div class="mb-6">
-        <%= form.label :vehicle_model_id, class: label_class %>
-          <%= form.text_field :vehicle_model_id, class: input_class %>
+    <%= form.label :vehicle_model_id, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+    <%= form.collection_select :vehicle_model_id, @vehicle_models, :id, :brand, { prompt: "Select a Vehicle Model" }, { class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" } %>
+  </div>
+  <div class="mb-6">
+        <%= form.label 'Vehicle registration plate', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+          <%= form.text_field :vehicleRegistrationPlate, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
       </div>
   <div class="mb-6">
-        <%= form.label :user_id, class: label_class %>
-          <%= form.text_field :user_id, class: input_class %>
-      </div>
-  <div class="mb-6">
-        <%= form.label :vehicleRegistrationPlate, class: label_class %>
-          <%= form.text_field :vehicleRegistrationPlate, class: input_class %>
-      </div>
-  <div class="mb-6">
-        <%= form.label :description, class: label_class %>
-          <%= form.text_area :description, class: input_class %>
-      </div>
-  <div class="mb-6">
-        <%= form.label :status, class: label_class %>
-          <%= form.check_box :status, class: input_class %>
+        <%= form.label :description, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+          <%= form.text_area :description, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
       </div>
 
-<%= form.submit class: button_class(theme: 'primary') %>
+  <% if vehicle.persisted? %>
+    <div class="mb-6">
+        <%= form.label :status, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+          <%= form.check_box :status, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+      </div>
+  <% end %>
 
-<% if vehicle.persisted? %>
-<%= link_to "Cancel", vehicle, class: "text-neutral-700 underline inline-block ml-3" %>
-<% else %>
-<%= link_to "Cancel", vehicles_path, class:  "text-neutral-700 underline inline-block ml-3" %>
-<% end %>
+<div class="flex justify-between">
+  <div>
+    <% if vehicle.persisted? %>
+    <%= link_to "Cancel", vehicle, class: "block text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" %>
+    <% else %>
+    <%= link_to "Cancel", vehicles_path, class: "block text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" %>
+    <% end %>
+  </div>
+  <div><%= form.submit class: "text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" %></div>
+</div>
 <% end %>

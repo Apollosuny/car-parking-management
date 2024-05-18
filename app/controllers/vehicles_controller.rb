@@ -13,15 +13,19 @@ class VehiclesController < ApplicationController
   # GET /vehicles/new
   def new
     @vehicle = Vehicle.new
+    @vehicle_models = VehicleModel.all
   end
 
   # GET /vehicles/1/edit
   def edit
+    @vehicle_models = VehicleModel.all
   end
 
   # POST /vehicles or /vehicles.json
   def create
     @vehicle = Vehicle.new(vehicle_params)
+    @vehicle.user = current_user
+    @vehicle.status = true
 
     respond_to do |format|
       if @vehicle.save

@@ -9,12 +9,17 @@
     </header>
 
     <% if current_user %>
-      <%= render "shared/side_bar" %>
+      <%= render "shared/navbar" %>
     <% end %>
 
-    <main class="flex-grow">
-      <%= content_for?(:content) ? yield(:content) : yield %>
-    </main>
+    <div>
+      <% if current_user %>
+        <%= render "shared/side_bar" %>
+      <% end %>
+      <main class="flex-grow">
+        <%= content_for?(:content) ? yield(:content) : yield %>
+      </main>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
   </body>

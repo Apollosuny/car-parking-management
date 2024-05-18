@@ -1,47 +1,101 @@
 <div class="p-4 sm:ml-64">
-  <div class="container mx-auto px-4">
+  <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
     <div class="flex items-center justify-between flex-wrap mb-6">
       <h1 class="text-3xl font-bold">Bookings</h1>
   
-      <%= link_to new_booking_path, class: button_class(theme: "primary") do %>
-      Add New Booking
+      <%= link_to new_booking_path do %>
+        <button 
+          type="button" 
+          class="text-white 
+          bg-gradient-to-br 
+          
+          from-purple-600 
+          to-blue-500 
+          hover:bg-gradient-to-bl 
+          focus:ring-4 
+          focus:outline-none 
+          focus:ring-blue-300 
+          dark:focus:ring-blue-800 
+          font-medium 
+          rounded-lg 
+          text-sm 
+          px-5 
+          py-2.5 
+          text-center 
+          me-2 
+          mb-2"
+        >Create new booking</button>
       <% end %>
     </div>
-  
-    <table class="table-auto border-collapse border-slate-400 w-full">
-      <thead class="bg-slate-50 dark:bg-slate-700">
-        <tr>
-          
-                    <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Parking slot</th>
-                    <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Vehicle</th>
-                    <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">User</th>
-                    <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Starttime</th>
-                    <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Endtime</th>
-                    <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Status</th>
-                  
-            <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left"></th>
-          
-        </tr>
-      </thead>
-  
-      <tbody>
-        <% @bookings.each do |booking| %>
-        <%= content_tag :tr, id: dom_id(booking), class: dom_class(booking) do %>
-        
-  
-                <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= booking.parking_slot %></td>
-                <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= booking.vehicle %></td>
-                <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= booking.user %></td>
-                <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= booking.startTime %></td>
-                <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= booking.endTime %></td>
-                <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= booking.status %></td>
-        
-        
-          <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= link_to 'Show', booking %></td>
-        
-        <% end %>
-        <% end %>
-      </tbody>
-    </table>
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Parking slot
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Vehicle
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Start Time
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        End Time
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        User
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Status
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+              <% if @bookings.any? %>
+                <% @bookings.each do |booking| %>
+                <%= content_tag :tr, id: dom_id(booking), class: dom_class(booking) do %>
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <%= booking.parking_slot %>
+                      </th>
+                      <td class="px-6 py-4">
+                          <%= booking.vehicle %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <%= booking.startTime %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <%= booking.endTime %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <%= booking.user.id %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <%= booking.status %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <div class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            <%= link_to 'Show', booking %>
+                          </div>
+                      </td>
+                  </tr>
+                <% end %>
+                <% end %>
+              <% else %>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 col-span-full">
+                  <th colspan="7" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white col-span-full text-center text-2xl">
+                      No data
+                  </th>
+                </tr>
+              <% end %>  
+            </tbody>
+        </table>
+    </div>
+
   </div>
 </div>

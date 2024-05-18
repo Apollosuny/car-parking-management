@@ -3,7 +3,8 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   authenticate :user, ->(u) { u.role == 'admin' } do
     resources :parking_slots
-    resources :users
+    # resources :users
+    resources :vehicle_models
     mount Sidekiq::Web => '/sidekiq'
   end
 

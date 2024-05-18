@@ -1,39 +1,87 @@
 <div class="p-4 sm:ml-64">
-  <div class="container mx-auto px-4">
+  <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
     <div class="flex items-center justify-between flex-wrap mb-6">
-      <h1 class="text-3xl font-bold">Parking_slots</h1>
+      <h1 class="text-3xl font-bold">Parking slots</h1>
   
-      <%= link_to new_parking_slot_path, class: button_class(theme: "primary") do %>
-      Add New Parking slot
+      <%= link_to new_parking_slot_path do %>
+      <button 
+          type="button" 
+          class="text-white 
+          bg-gradient-to-br 
+          
+          from-purple-600 
+          to-blue-500 
+          hover:bg-gradient-to-bl 
+          focus:ring-4 
+          focus:outline-none 
+          focus:ring-blue-300 
+          dark:focus:ring-blue-800 
+          font-medium 
+          rounded-lg 
+          text-sm 
+          px-5 
+          py-2.5 
+          text-center 
+          me-2 
+          mb-2"
+        >Create new Parking slot</button>
       <% end %>
     </div>
-  
-    <table class="table-auto border-collapse border-slate-400 w-full">
-      <thead class="bg-slate-50 dark:bg-slate-700">
-        <tr>
-          
-            <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Slot number</th>
-            <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Status</th>
-            <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left"></th>
-          
-        </tr>
-      </thead>
-  
-      <tbody>
-        <% @parking_slots.each do |parking_slot| %>
-        <%= content_tag :tr, id: dom_id(parking_slot), class: dom_class(parking_slot) do %>
-        
-  
-                <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= parking_slot.slotNumber %></td>
-                <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= parking_slot.status %></td>
-        
-        
-          <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= link_to 'Show', parking_slot %></td>
-        
-        <% end %>
-        <% end %>
-      </tbody>
-    </table>
+
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Slot number
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Created At
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Updated At
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Status
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+              <% if @parking_slots.any? %>
+                <% @parking_slots.each do |parking_slot| %>
+                <%= content_tag :tr, id: dom_id(parking_slot), class: dom_class(parking_slot) do %>
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <%= parking_slot.slotNumber %>
+                      </th>
+                      <td class="px-6 py-4">
+                          <%= parking_slot.createdAt %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <%= parking_slot.updatedAt %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <%= parking_slot.status %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <div class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            <%= link_to 'Show', parking_slot %>
+                          </div>
+                      </td>
+                  </tr>
+                <% end %>
+                <% end %>
+              <% else %>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 col-span-full">
+                  <th colspan="7" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white col-span-full text-center text-2xl">
+                      No data
+                  </th>
+                </tr>
+              <% end %>  
+            </tbody>
+        </table>
   </div>
 </div>
 

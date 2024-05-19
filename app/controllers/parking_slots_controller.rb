@@ -22,6 +22,7 @@ class ParkingSlotsController < ApplicationController
   # POST /parking_slots or /parking_slots.json
   def create
     @parking_slot = ParkingSlot.new(parking_slot_params)
+    @parking_slot.status = false
 
     respond_to do |format|
       if @parking_slot.save
@@ -65,6 +66,6 @@ class ParkingSlotsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def parking_slot_params
-      params.require(:parking_slot).permit(:slotNumber, :status)
+      params.require(:parking_slot).permit(:slotNumber, :price, :status)
     end
 end

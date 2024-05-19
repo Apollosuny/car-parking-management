@@ -45,6 +45,15 @@
                         End Time
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Total Time
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Total Price
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Payment Type
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         User
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -61,16 +70,41 @@
                 <%= content_tag :tr, id: dom_id(booking), class: dom_class(booking) do %>
                   <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                       <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                          <%= booking.parking_slot %>
+                          <%= booking.parking_slot.slotNumber %>
                       </th>
                       <td class="px-6 py-4">
-                          <%= booking.vehicle %>
+                          <%= booking.vehicle.vehicleRegistrationPlate %>
                       </td>
                       <td class="px-6 py-4">
                           <%= booking.startTime %>
                       </td>
                       <td class="px-6 py-4">
-                          <%= booking.endTime %>
+                          <% if booking.endTime %>
+                            <%= booking.endTime %>
+                          <% else %>
+                            <div>--</div>
+                          <% end %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <% if booking.payment %>
+                            <%= booking.payment.totalTime %>
+                          <% else %>
+                            <div>--</div>
+                          <% end %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <% if booking.payment %>
+                            <%= booking.payment.totalPrice %>
+                          <% else %>
+                            <div>--</div>
+                          <% end %>
+                      </td>
+                      <td class="px-6 py-4">
+                        <% if booking.payment %>
+                          <%= booking.payment.paymentType %>
+                        <% else %>
+                          <div>--</div>
+                        <% end %>
                       </td>
                       <td class="px-6 py-4">
                           <%= booking.user.id %>

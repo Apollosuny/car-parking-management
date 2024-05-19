@@ -1,33 +1,35 @@
-<div class="max-w-3xl mx-auto px-4">
-  <div class="flex items-center justify-between">
-    <h1 class="flex-1 font-bold text-3xl">Payment</h1>
-
-    <div class="flex-wrap lg:flex items-center lg:space-x-3">
-      <%= link_to payments_path, class: button_class(theme: "transparent") do %>
-      All Payments
-      <% end %>
-      <%= link_to edit_payment_path(@payment), class: button_class(theme:"primary") do %>
-      Edit
-      <% end %>
+<div class="p-4 sm:ml-64">
+  <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+    <div class="flex items-center justify-between">
+      <h1 class="flex-1 font-bold text-3xl">Payment</h1>
+  
+      <div class="flex-wrap lg:flex items-center lg:space-x-3">
+        <%= link_to payments_path, class: button_class(theme: "transparent") do %>
+        All Payments
+        <% end %>
+        <%= link_to edit_payment_path(@payment), class: button_class(theme:"primary") do %>
+        Edit
+        <% end %>
+      </div>
     </div>
+  
+    <ul class="text-slate-700">
+        <li>
+          <p class="font-semibold">Totaltime:</p>
+          <p><%= @payment.totalTime %></p>
+        </li>
+        <li>
+          <p class="font-semibold">Paymenttype:</p>
+          <p><%= @payment.payment_type_id %></p>
+        </li>
+        <li>
+          <p class="font-semibold">Note:</p>
+          <p><%= @payment.note %></p>
+        </li>
+        <li>
+          <p class="font-semibold">Status:</p>
+          <p><%= @payment.status %></p>
+        </li>
+    </ul>
   </div>
-
-  <ul class="text-slate-700">
-      <li>
-        <p class="font-semibold">Totaltime:</p>
-        <p><%= @payment.totalTime %></p>
-      </li>
-      <li>
-        <p class="font-semibold">Paymenttype:</p>
-        <p><%= @payment.paymentType %></p>
-      </li>
-      <li>
-        <p class="font-semibold">Note:</p>
-        <p><%= @payment.note %></p>
-      </li>
-      <li>
-        <p class="font-semibold">Status:</p>
-        <p><%= @payment.status %></p>
-      </li>
-  </ul>
 </div>

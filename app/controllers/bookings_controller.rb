@@ -13,13 +13,13 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
-    @parking_slots = ParkingSlot.where(:status => false)
+    @parking_slots = ParkingSlot.where(:status => true)
     @vehicles = Vehicle.where(:user_id => current_user.id)
   end
 
   # GET /bookings/1/edit
   def edit
-    @parking_slots = ParkingSlot.where(:status => false)
+    @parking_slots = ParkingSlot.where(:status => true)
     @vehicles = Vehicle.where(:user_id => current_user.id)
   end
 
@@ -27,6 +27,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.user = current_user
+    @booking.status = 0
 
     respond_to do |format|
       if @booking.save
@@ -35,11 +36,15 @@ class BookingsController < ApplicationController
           @duration = @booking.duration
           @amount = @price * @duration
 
+          # Update parking slot status
+          @parking_slot = ParkingSlot.find(@booking.parking_slot.id)
+          @parking_slot.update!(status: false)
+
           @payment = Payment.new(
             booking_id: @booking.id,
             totalTime: @duration,
             totalPrice: @amount, 
-            paymentType: 'credit'
+            status: false
           )
 
           if @payment.save
@@ -50,8 +55,7 @@ class BookingsController < ApplicationController
             format.json { render json: @payment.errors, status: :unprocessable_entity }
           end
         else
-          format.html { redirect_to booking_url(@booking), notice: "Booking was successfully created. Payment will be created once end time is set." }
-          format.json { render :show, status: :created, location: @booking }
+          
         end
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -64,31 +68,31 @@ class BookingsController < ApplicationController
   def update
     respond_to do |format|
       if @booking.update(booking_params)
-        if @booking.endTime.present?
-          @price = @booking.parking_slot.price
-          @duration = @booking.duration
-          @amount = @price * @duration
+        # if @booking.endTime.present?
+        #   @price = @booking.parking_slot.price
+        #   @duration = @booking.duration
+        #   @amount = @price * @duration
 
-          @payment = Payment.new(
-            booking_id: @booking.id,
-            totalTime: @duration,
-            totalPrice: @amount, 
-            paymentType: 'credit'
-          )
+        #   @payment = Payment.new(
+        #     booking_id: @booking.id,
+        #     totalTime: @duration,
+        #     totalPrice: @amount, 
+        #     paymentType: 'credit'
+        #   )
 
-          if @payment.save
-            format.html { redirect_to booking_url(@booking), notice: "Booking and payment were successfully created." }
-            format.json { render :show, status: :created, location: @booking }
-          else
-            format.html { render :new, status: :unprocessable_entity }
-            format.json { render json: @payment.errors, status: :unprocessable_entity }
-          end
-        else
-          format.html { redirect_to booking_url(@booking), notice: "Booking was successfully updated." }
-          format.json { render :show, status: :ok, location: @booking }
-        end
-        # format.html { redirect_to booking_url(@booking), notice: "Booking was successfully updated." }
-        # format.json { render :show, status: :ok, location: @booking }
+        #   if @payment.save
+        #     format.html { redirect_to booking_url(@booking), notice: "Booking and payment were successfully created." }
+        #     format.json { render :show, status: :created, location: @booking }
+        #   else
+        #     format.html { render :new, status: :unprocessable_entity }
+        #     format.json { render json: @payment.errors, status: :unprocessable_entity }
+        #   end
+        # else
+        #   format.html { redirect_to booking_url(@booking), notice: "Booking was successfully updated." }
+        #   format.json { render :show, status: :ok, location: @booking }
+        # end
+        format.html { redirect_to booking_url(@booking), notice: "Booking was successfully updated." }
+        format.json { render :show, status: :ok, location: @booking }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @booking.errors, status: :unprocessable_entity }

@@ -35,6 +35,9 @@
                         Slot number
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Price
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Created At
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -56,11 +59,18 @@
                       <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                           <%= parking_slot.slotNumber %>
                       </th>
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <% if parking_slot.price %>
+                          <%= parking_slot.price %>
+                          <% else %>
+                          <div>--</div>
+                          <% end %>
+                      </th>
                       <td class="px-6 py-4">
-                          <%= parking_slot.createdAt %>
+                          <%= parking_slot.created_at %>
                       </td>
                       <td class="px-6 py-4">
-                          <%= parking_slot.updatedAt %>
+                          <%= parking_slot.updated_at %>
                       </td>
                       <td class="px-6 py-4">
                           <%= parking_slot.status %>

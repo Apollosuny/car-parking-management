@@ -17,6 +17,7 @@ class PaymentsController < ApplicationController
 
   # GET /payments/1/edit
   def edit
+    @payment_types = PaymentType.all
   end
 
   # POST /payments or /payments.json

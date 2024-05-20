@@ -3,7 +3,12 @@ class BookingsController < ApplicationController
 
   # GET /bookings or /bookings.json
   def index
-    @bookings = Booking.all
+    if current_user.role == 'admin'
+      @bookings = Booking.all
+    else 
+      @bookings = Booking.where(:user_id => current_user.id)
+    end
+    @payment_types = PaymentType.all
   end
 
   # GET /bookings/1 or /bookings/1.json

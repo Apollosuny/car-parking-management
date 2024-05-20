@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_19_163403) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_19_163340) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,16 +66,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_19_163403) do
     t.index ["vehicle_id"], name: "index_bookings_on_vehicle_id"
   end
 
-  create_table "create_payment_types", force: :cascade do |t|
-    t.string "name"
-    t.string "code"
-    t.text "description"
-    t.string "image"
-    t.boolean "active", default: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "parking_slots", force: :cascade do |t|
     t.integer "slotNumber"
     t.boolean "status"
@@ -102,9 +92,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_19_163403) do
     t.datetime "updated_at", null: false
     t.integer "booking_id"
     t.float "totalPrice"
-    t.bigint "payment_type_id"
     t.index ["booking_id"], name: "index_payments_on_booking_id"
-    t.index ["payment_type_id"], name: "index_payments_on_payment_type_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -160,7 +148,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_19_163403) do
   add_foreign_key "bookings", "parking_slots"
   add_foreign_key "bookings", "users"
   add_foreign_key "bookings", "vehicles"
-  add_foreign_key "payments", "payment_types"
   add_foreign_key "profiles", "users"
   add_foreign_key "vehicles", "users"
   add_foreign_key "vehicles", "vehicle_models"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_19_042933) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_19_163340) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,9 +58,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_19_042933) do
     t.bigint "user_id", null: false
     t.datetime "startTime"
     t.datetime "endTime"
-    t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status"
     t.index ["parking_slot_id"], name: "index_bookings_on_parking_slot_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
     t.index ["vehicle_id"], name: "index_bookings_on_vehicle_id"
@@ -72,6 +72,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_19_042933) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "price"
+  end
+
+  create_table "payment_types", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "code"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "payments", force: :cascade do |t|

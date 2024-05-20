@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :parking_slots
     # resources :users
     resources :vehicle_models
+    resources :payment_types
     mount Sidekiq::Web => '/sidekiq'
   end
 

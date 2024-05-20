@@ -22,7 +22,7 @@ class ParkingSlotsController < ApplicationController
   # POST /parking_slots or /parking_slots.json
   def create
     @parking_slot = ParkingSlot.new(parking_slot_params)
-    @parking_slot.status = false
+    @parking_slot.status = true
 
     respond_to do |format|
       if @parking_slot.save

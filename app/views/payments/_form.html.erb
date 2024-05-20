@@ -12,27 +12,28 @@
 <% end %>
 
   <div class="mb-6">
-        <%= form.label :totalTime, class: label_class %>
-          <%= form.text_field :totalTime, class: input_class %>
-      </div>
+    <%= form.label 'Total Time', class: label_class %>
+    <%= form.text_field :totalTime, disabled: true, class: input_class %>
+  </div>
   <div class="mb-6">
-        <%= form.label :paymentType, class: label_class %>
-          <%= form.text_field :paymentType, class: input_class %>
+        <%= form.label 'Payment type', class: label_class %>
+        <%= form.collection_select :payment_type_id, @payment_types, :id, :name, { prompt: "Select a type" }, class: input_class %>
       </div>
   <div class="mb-6">
         <%= form.label :note, class: label_class %>
           <%= form.text_area :note, class: input_class %>
       </div>
-  <div class="mb-6">
-        <%= form.label :status, class: label_class %>
-          <%= form.check_box :status, class: input_class %>
-      </div>
 
-<%= form.submit class: button_class(theme: 'primary') %>
+<div class="flex justify-end items-center gap-4 p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+    <button @click="open = false" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Decline</button>
+    <%# <button 
+      @click="open = false" 
+      type="submit" 
+      class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+      >
+        Submit
+      </button> %>
+      <%= form.submit class: button_class(theme: 'primary') %>
+</div>
 
-<% if payment.persisted? %>
-<%= link_to "Cancel", payment, class: "text-neutral-700 underline inline-block ml-3" %>
-<% else %>
-<%= link_to "Cancel", payments_path, class:  "text-neutral-700 underline inline-block ml-3" %>
-<% end %>
 <% end %>

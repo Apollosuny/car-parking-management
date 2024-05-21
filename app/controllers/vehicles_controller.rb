@@ -3,7 +3,11 @@ class VehiclesController < ApplicationController
 
   # GET /vehicles or /vehicles.json
   def index
-    @vehicles = Vehicle.all
+    if current_user.role == 'admin'
+      @vehicles = Vehicle.all
+    else 
+      @vehicles = Vehicle.where(:user_id => current_user.id)
+    end
   end
 
   # GET /vehicles/1 or /vehicles/1.json

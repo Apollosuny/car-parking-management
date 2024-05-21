@@ -4,42 +4,88 @@
 <div class="p-4 sm:ml-64">
   <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
     <div class="flex items-center justify-between flex-wrap mb-6">
-      <h1 class="text-3xl font-bold">Payment_types</h1>
+      <h1 class="text-3xl font-bold">Payment types</h1>
   
-      <%= link_to new_payment_type_path, class: button_class(theme: "primary") do %>
-      Add New Payment type
+      <%= link_to new_payment_type_path do %>
+        <button 
+          type="button" 
+          class="
+            text-white 
+            bg-gradient-to-br 
+            from-purple-600 
+            to-blue-500 
+            hover:bg-gradient-to-bl 
+            focus:ring-4 
+            focus:outline-none 
+            focus:ring-blue-300 
+            dark:focus:ring-blue-800 
+            font-medium 
+            rounded-lg 
+            text-sm 
+            px-5 
+            py-2.5 
+            text-center 
+            me-2 
+            mb-2"
+          >
+            Add new type
+          </button>
       <% end %>
     </div>
-  
-    <table class="table-auto border-collapse border-slate-400 w-full">
-      <thead class="bg-slate-50 dark:bg-slate-700">
-        <tr>
-          
-            <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Name</th>
-          
-                    <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Description</th>
-                    <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Code</th>
-                    <th class="border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">Active</th>
-                  
-        </tr>
-      </thead>
-  
-      <tbody>
-        <% @payment_types.each do |payment_type| %>
-        <%= content_tag :tr, id: dom_id(payment_type), class: dom_class(payment_type) do %>
-        
-          <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= link_to payment_type.name, payment_type %></td>
-        
-  
-                <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= payment_type.description %></td>
-                <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= payment_type.code %></td>
-                <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><%= payment_type.active %></td>
-        
-        
-        <% end %>
-        <% end %>
-      </tbody>
-    </table>
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Description
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Code
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Active
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+              <% if @payment_types.any? %>
+                <% @payment_types.each do |payment_type| %>
+                <%= content_tag :tr, id: dom_id(payment_type), class: dom_class(payment_type) do %>
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <%= payment_type.name %>
+                      </th>
+                      <td class="px-6 py-4">
+                          <%= payment_type.description %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <%= payment_type.code %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <%= payment_type.active %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <div class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            <%= link_to 'Show', payment_type %>
+                          </div>
+                      </td>
+                  </tr>
+                <% end %>
+                <% end %>
+              <% else %>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 col-span-full">
+                  <th colspan="7" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white col-span-full text-center text-2xl">
+                      No data
+                  </th>
+                </tr>
+              <% end %>  
+            </tbody>
+        </table>
   </div>
   </div>
 </div>

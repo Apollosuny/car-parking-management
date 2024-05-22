@@ -3,9 +3,12 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   authenticate :user, ->(u) { u.role == 'admin' } do
     resources :parking_slots
-    # resources :users
     resources :vehicle_models
     resources :payment_types
+
+    # Defines api route
+    get 'api/booked_per_day', to: 'home#booked_per_day'
+    get 'api/monthly_revenue', to: 'home#monthly_revenue'
     mount Sidekiq::Web => '/sidekiq'
   end
 
@@ -18,8 +21,12 @@ Rails.application.routes.draw do
     resources :parking_slots, only: [:index, :update]
     resources :payments
     resources :profiles
+
+    # Defines specific route
     get 'settings', to: 'settings#profile'
     get 'settings/security', to: 'settings#security'
+
+    # Defines api route
     get 'chart_data', to: 'home#chart_data'
     get 'parking_data', to: 'home#parking_data'
     
@@ -27,6 +34,4 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-
-  
 end

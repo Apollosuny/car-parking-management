@@ -28,6 +28,63 @@ class HomeController < ApplicationController
     render json: @chart_data
   end
 
+  def booked_per_day
+    start_date = Date.today.beginning_of_week
+    end_date = Date.today.end_of_week
+
+    # Fetch booking counts grouped by day
+    bookings = Booking.where(startTime: start_date..end_date)
+                      .group_by_day(:startTime)
+                      .count
+
+    # Ensure all days of the week are included
+    data = (start_date..end_date).map do |date|
+      {
+        date: date,
+        count: bookings[date] || 0
+      }
+    end
+
+    render json: data
+  end
+
+  def monthly_revenue
+    # Fetch booking totals grouped by year and month
+    current_year = Date.today.year
+    previous_year = current_year - 1
+
+    # Fetch booking totals grouped by year and month
+    bookings_current_year = Booking.includes(:payment)
+                                   .where(startTime: (Date.new(current_year, 1, 1)..Date.new(current_year, 12, 31)))
+                                   .group_by_month(:startTime, format: "%Y-%m").sum("payments.totalPrice")
+    
+    bookings_previous_year = Booking.includes(:payment)
+                                    .where(startTime: (Date.new(previous_year, 1, 1)..Date.new(previous_year, 12, 31)))
+                                    .group_by_month(:startTime, format: "%Y-%m").sum("payments.totalPrice")
+
+    # Generate labels for all months of current and previous year
+    all_months = (Date.today.beginning_of_year..Date.today.end_of_year).map { |date| date.strftime("%Y-%m") }
+
+    data_current_year = all_months.map do |month|
+      {
+        month: month,
+        revenue: bookings_current_year[month] || 0
+      }
+    end
+
+    data_previous_year = all_months.map do |month|
+      {
+        month: month,
+        revenue: bookings_previous_year[month] || 0
+      }
+    end
+
+    render json: {
+      current_year: data_current_year,
+      previous_year: data_previous_year
+    }
+  end
+
   def parking_data
     parking_data = Booking.joins(:payment)
                           .where(bookings: { created_at: 1.week.ago.beginning_of_week..Time.current })

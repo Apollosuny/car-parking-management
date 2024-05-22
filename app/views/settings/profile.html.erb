@@ -19,7 +19,11 @@
                 <%= render 'profiles/form', profile: @profile %>
             </div>
             <div class="flex justify-center items-center">
-                <img class="w-80 h-80 rounded-full object-cover" src="https://images.pexels.com/photos/819530/pexels-photo-819530.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Rounded avatar">
+                <% if current_user.profile.image.attached? %>
+                    <%= image_tag(current_user.profile.image, class: "w-80 h-80 rounded-full object-cover") %>
+                <% else %>
+                    --
+                <% end %>
             </div>
         </div>
     </div>

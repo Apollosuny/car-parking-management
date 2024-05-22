@@ -15,6 +15,9 @@
                         Vehicle model
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Image
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Vehicle registration plate
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -36,9 +39,16 @@
                 <% @vehicles.each do |vehicle| %>
                 <%= content_tag :tr, id: dom_id(vehicle), class: dom_class(vehicle) do %>
                   <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                           <%= vehicle.vehicle_model.brand %>
-                      </th>
+                      </td>
+                      <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <% if vehicle.image.attached? %>
+                          <%= image_tag(vehicle.image, class: "w-20 h-20 object-cover rounded-full") %>
+                        <% else %>
+                          --
+                        <% end %>
+                      </td>
                       <td class="px-6 py-4">
                           <%= vehicle.vehicleRegistrationPlate %>
                       </td>

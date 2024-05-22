@@ -16,9 +16,9 @@
           <%= form.text_field :fullName, class: input_class %>
       </div>
   <div class="mb-6">
-        <%= form.label :avatar, class: label_class %>
-          <%= form.text_field :avatar, class: input_class %>
-      </div>
+    <%= form.label :image, class: label_class %>
+    <%= form.file_field :image, class: input_class %>
+  </div>
   <div class="mb-6">
         <%= form.label :phone, class: label_class %>
           <%= form.text_field :phone, class: input_class %>

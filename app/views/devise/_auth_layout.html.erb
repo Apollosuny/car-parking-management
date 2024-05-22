@@ -3,15 +3,18 @@
   title ||= "" %>
 <div class="items-start justify-center block h-full grid-cols-1 gap-4 lg:grid lg:items-center lg:grid-cols-2">
   <div class="relative flex items-center justify-center h-32 overflow-hidden lg:h-screen bg-gradient-to-tr from-black to-gray-800">
-    <div class="inset-auto z-30 flex items-center justify-center flex-1 w-full h-auto font-sans text-center text-white shadow lg:flex lg:h-screen lg:absolute xl:text-5xl">
-      <h1 class="font-semibold text-4xl">Your App Name Here</h1>
+    <div class="inset-auto z-30 flex items-center justify-center flex-1 w-full h-full font-sans text-center text-white shadow lg:flex lg:h-screen lg:absolute xl:text-5xl">
+      <%= image_tag("sign-in.jpg", class: "w-full h-full object-cover") %>
     </div>
   </div>
   <div>
     <div class="relative z-20 px-6 mx-auto lg:px-12 max-w-lg">
       <div class="mb-4 xl:mt-8">
-        <div class="mt-6 mb-4 lg:mt-0">
-          <%= link_to "Back", root_path, class: "text-gray-600 underline flex items-center hover:text-gray-700 hover:no-underline" %>
+        <div class="mt-6 mb-4 lg:mt-0 flex items-center gap-2">
+          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
+          </svg>
+          <%= link_to "Back", root_path, class: "text-gray-600 flex items-center hover:text-gray-700" %>
         </div>
 
         <% unless title.blank? %>

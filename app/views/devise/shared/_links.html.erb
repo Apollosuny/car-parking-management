@@ -1,5 +1,8 @@
 <%- if controller_name != 'sessions' %>
-  <div class="flex flex-wrap"><%= link_to "Sign in", new_session_path(resource_name), class: link_class(extended_classes: "mb-2") %></div>
+  <div class="flex flex-wrap">
+    Already have an account?
+    <div class="w-1"></div>
+    <%= link_to "Sign in", new_session_path(resource_name), class: link_class(extended_classes: "mb-2") %></div>
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>

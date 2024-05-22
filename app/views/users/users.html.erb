@@ -1,0 +1,70 @@
+<div class="p-4 sm:ml-64">
+  <div class="p-4 dark:border-gray-700 mt-14">
+    <div class="flex items-center justify-between flex-wrap mb-6">
+      <h1 class="text-3xl font-bold">Users</h1>
+    </div>
+
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Username
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Email
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Joined At
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Last Login
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Status
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+              <% if @users.any? %>
+                <% @users.each do |user| %>
+                <%= content_tag :tr, id: dom_id(user), class: dom_class(user) do %>
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <%= user.username %>
+                      </th>
+                      <td class="px-6 py-4">
+                          <%= user.email %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <%= user.created_at %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <%= user.last_login %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <%= user.status %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <div class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            Show
+                          </div>
+                      </td>
+                  </tr>
+                <% end %>
+                <% end %>
+              <% else %>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 col-span-full">
+                  <th colspan="7" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white col-span-full text-center text-2xl">
+                      No data
+                  </th>
+                </tr>
+              <% end %>  
+            </tbody>
+        </table>
+
+  </div>
+  </div>
+</div>

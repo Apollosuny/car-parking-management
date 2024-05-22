@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     resources :vehicle_models
     resources :payment_types
 
+    # Defines specific route
+    get 'customers', to: 'users#users'
+
     # Defines api route
     get 'api/booked_per_day', to: 'home#booked_per_day'
     get 'api/monthly_revenue', to: 'home#monthly_revenue'

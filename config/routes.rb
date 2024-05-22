@@ -20,13 +20,11 @@ Rails.application.routes.draw do
     resources :profiles
     get 'settings', to: 'settings#profile'
     get 'settings/security', to: 'settings#security'
+    get 'chart_data', to: 'home#chart_data'
+    get 'parking_data', to: 'home#parking_data'
     
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   end
-
-  get 'chart_data', to: 'home#chart_data'
-
-  
 
   devise_for :users
 

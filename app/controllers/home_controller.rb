@@ -27,4 +27,25 @@ class HomeController < ApplicationController
 
     render json: @chart_data
   end
+
+  def parking_data
+    parking_data = Booking.joins(:payment)
+                          .where(bookings: { created_at: 1.week.ago.beginning_of_week..Time.current })
+                          .group_by_day('bookings.created_at', format: "%A")
+                          .sum('payments.totalTime')
+
+    days_of_week = %w[Monday Tuesday Wednesday Thursday Friday Saturday Sunday]
+
+    complete_data = days_of_week.map do |day|
+      {
+        day: day,
+        total_time: parking_data[day] || 0
+      }
+    end
+
+    render json: {
+      categories: complete_data.map { |data| data[:day] },
+      data: complete_data.map { |data| data[:total_time] }
+    }
+  end
 end

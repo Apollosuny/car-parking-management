@@ -111,6 +111,8 @@ GEM
       activerecord (>= 4.0.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    groupdate (6.4.0)
+      activesupport (>= 6.1)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -290,6 +292,7 @@ DEPENDENCIES
   devise (~> 4.8, >= 4.8.1)
   dotenv-rails
   friendly_id (~> 5.4, >= 5.4.2)
+  groupdate
   image_processing (~> 1.2)
   jbuilder
   jsbundling-rails

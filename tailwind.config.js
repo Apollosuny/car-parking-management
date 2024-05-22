@@ -1,6 +1,6 @@
 module.exports = {
   content: [
-    "./app/views/**/*.html.erb",
+    "./app/views/**/*",
     "./app/helpers/**/*.rb",
     "./app/javascript/**/*.{js, jsx, vue}",
   ],
@@ -12,8 +12,5 @@ module.exports = {
     require("@tailwindcss/typography"),
     require("@tailwindcss/aspect-ratio"),
     require("@tailwindcss/line-clamp"),
-    require("flowbite/plugin")({
-      charts: true,
-    }),
   ],
 };

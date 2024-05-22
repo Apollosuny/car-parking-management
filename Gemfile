@@ -78,4 +78,4 @@ gem "sassc-rails"
 gem 'pg', '1.3.5'
 gem "dotenv-rails"
 gem 'rails_admin'
-gem "sassc-rails"
+gem 'groupdate'

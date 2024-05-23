@@ -4,11 +4,6 @@ class VehicleModelsController < ApplicationController
   # GET /vehicle_models or /vehicle_models.json
   def index
     @vehicle_models = VehicleModel.all
-    # if params[:query].present?
-    #   @vehicle_models = VehicleModel.search(params[:query])
-    # else
-    #   @vehicle_models = VehicleModel.all
-    # end
   end
 
   # GET /vehicle_models/1 or /vehicle_models/1.json

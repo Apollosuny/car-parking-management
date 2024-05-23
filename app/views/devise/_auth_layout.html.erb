@@ -10,17 +10,15 @@
   <div class="h-full w-full flex items-center">
     <div class="relative z-20 px-6 mx-auto w-96">
       <div class="mb-4 xl:mt-8">
-        <%= link_to root_path do %>
-        <div class="mt-6 mb-4 lg:mt-0 flex items-center gap-2">
-          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
-          </svg>
-          Back
+        <div class="flex justify-center">
+          <a href="/" class="w-full flex justify-center">
+            <%= image_tag('logo.png', class: "h-16 me-3") %>
+            <span class="self-center text-4xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">IParking</span>
+          </a>
         </div>
-        <% end %>
 
         <% unless title.blank? %>
-          <h2 class="pt-6 font-sans text-3xl font-black leading-tight"><%= title %></h2>
+          <h2 class="pt-6 font-sans text-3xl text-center font-black leading-tight"><%= title %></h2>
         <% end %>
 
         <% unless subtitle.blank? %>

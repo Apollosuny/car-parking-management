@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
     else
       root_path
     end
+    resource.update(last_login: Time.now)
   end
 
   def after_sign_out_path_for(resource)

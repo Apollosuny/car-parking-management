@@ -15,6 +15,12 @@ services:
     image: redis:5.0.4-alpine
     volumes:
       - redis-data:/data
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.9
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
   app:
     build:
       context: .
@@ -27,6 +33,8 @@ services:
     depends_on:
       - postgres
       - redis
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
     command: ["sh", "-c", "/scripts/command.sh && tail -f /dev/null"]
     stdin_open: true
     tty: true

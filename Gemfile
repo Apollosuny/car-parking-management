@@ -79,3 +79,7 @@ gem 'pg', '1.3.5'
 gem "dotenv-rails"
 gem 'rails_admin'
 gem 'groupdate'
+
+# search
+gem 'searchkick'
+gem 'elasticsearch', '~> 7.17'

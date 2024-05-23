@@ -105,7 +105,19 @@ GEM
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
+    elasticsearch (7.17.10)
+      elasticsearch-api (= 7.17.10)
+      elasticsearch-transport (= 7.17.10)
+    elasticsearch-api (7.17.10)
+      multi_json
+    elasticsearch-transport (7.17.10)
+      faraday (>= 1, < 3)
+      multi_json
     erubi (1.12.0)
+    faraday (2.9.0)
+      faraday-net_http (>= 2.0, < 3.2)
+    faraday-net_http (3.1.0)
+      net-http
     ffi (1.15.5)
     friendly_id (5.5.0)
       activerecord (>= 4.0.0)
@@ -113,6 +125,7 @@ GEM
       activesupport (>= 5.0)
     groupdate (6.4.0)
       activesupport (>= 6.1)
+    hashie (5.0.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -153,9 +166,12 @@ GEM
     mini_mime (1.1.2)
     minitest (5.18.0)
     msgpack (1.6.1)
+    multi_json (1.15.0)
     name_of_person (1.1.1)
       activesupport (>= 5.2.0)
     nested_form (0.3.2)
+    net-http (0.4.1)
+      uri
     net-imap (0.3.4)
       date
       net-protocol
@@ -233,6 +249,9 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    searchkick (5.3.1)
+      activemodel (>= 6.1)
+      hashie
     selenium-webdriver (4.8.1)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -260,6 +279,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uri (0.13.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -291,6 +311,7 @@ DEPENDENCIES
   debug
   devise (~> 4.8, >= 4.8.1)
   dotenv-rails
+  elasticsearch (~> 7.17)
   friendly_id (~> 5.4, >= 5.4.2)
   groupdate
   image_processing (~> 1.2)
@@ -302,6 +323,7 @@ DEPENDENCIES
   rails (~> 7.0.4, >= 7.0.4.2)
   rails_admin
   sassc-rails
+  searchkick
   selenium-webdriver
   sidekiq (~> 6.5, >= 6.5.4)
   sprockets-rails

@@ -1,0 +1,60 @@
+<table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Brand
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Model
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Year
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Color
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Body type
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+              <% if vehicle_models.any? %>
+                <% vehicle_models.each do |vehicle_model| %>
+                <%= content_tag :tr, id: dom_id(vehicle_model), class: dom_class(vehicle_model) do %>
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <%= vehicle_model.brand %>
+                      </th>
+                      <td class="px-6 py-4">
+                          <%= vehicle_model.model %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <%= vehicle_model.year %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <%= vehicle_model.color %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <%= vehicle_model.bodyType %>
+                      </td>
+                      <td class="px-6 py-4">
+                          <div class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            <%= link_to 'Show', vehicle_model %>
+                          </div>
+                      </td>
+                  </tr>
+                <% end %>
+                <% end %>
+              <% else %>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 col-span-full">
+                  <th colspan="7" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white col-span-full text-center text-2xl">
+                      No data
+                  </th>
+                </tr>
+              <% end %>  
+            </tbody>
+        </table>

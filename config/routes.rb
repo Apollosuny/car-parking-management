@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
     # Defines specific route
     get 'customers', to: 'users#users'
+    post 'search', to: 'search#index', as: 'search'
 
     # Defines api route
     get 'api/booked_per_day', to: 'home#booked_per_day'

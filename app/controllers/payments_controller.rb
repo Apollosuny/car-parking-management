@@ -38,7 +38,8 @@ class PaymentsController < ApplicationController
   # PATCH/PUT /payments/1 or /payments/1.json
   def update
     respond_to do |format|
-      if @payment.update(payment_params)
+      if @payment.update(payment_params.merge(status: true))
+        update_booking_and_parking_slot_status(@payment.booking_id)
         format.html { redirect_to payment_url(@payment), notice: "Payment was successfully updated." }
         format.json { render :show, status: :ok, location: @payment }
       else
@@ -67,5 +68,12 @@ class PaymentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def payment_params
       params.require(:payment).permit(:totalTime, :payment_type_id, :note, :status)
+    end
+
+    def update_booking_and_parking_slot_status(booking_id)
+      booking = Booking.find_by(id: booking_id)
+      booking.update(status: 3)
+      parking_slot = ParkingSlot.find_by(id: booking.parking_slot_id)
+      parking_slot.update(status: true)
     end
 end

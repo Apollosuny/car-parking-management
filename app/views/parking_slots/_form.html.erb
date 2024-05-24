@@ -21,6 +21,11 @@
     <%= form.number_field :price, step: :any, class: input_class %>
   </div>
 
+  <div class="mb-6">
+    <%= form.label :status, class: label_class %>
+    <%= form.check_box :status, step: :any, class: input_class %>
+  </div>
+
 <%= form.submit class: button_class(theme: 'primary') %>
 
 <% if parking_slot.persisted? %>

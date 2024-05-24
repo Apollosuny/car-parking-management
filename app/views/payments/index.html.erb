@@ -36,7 +36,11 @@
                           <%= payment.totalTime %>
                       </th>
                       <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                          <%= payment.paymentType %>
+                        <% if payment.payment_type.present? %>
+                          <%= payment.payment_type.name %>
+                        <% else %>
+                          --
+                        <% end %>
                       </th>
                       <td class="px-6 py-4">
                           <%= payment.note %>

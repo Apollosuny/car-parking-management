@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :authenticate_user!, :configure_permitted_parameters, if: :devise_controller?
+  after_action :update_last_login, if: :user_signed_in?
 
   before_action do
     authenticate_admin! if request.path.start_with?('/admin')
@@ -13,7 +14,6 @@ class ApplicationController < ActionController::Base
     else
       root_path
     end
-    resource.update(last_login: Time.now)
   end
 
   def after_sign_out_path_for(resource)
@@ -35,6 +35,10 @@ class ApplicationController < ActionController::Base
 
     def is_admin?
       Devise.respond_to?(:current_user) && current_user.role == 'admin' 
+    end
+
+    def update_last_login
+      current_user.update(last_login: Time.now)
     end
 end
 

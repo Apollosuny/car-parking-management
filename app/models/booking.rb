@@ -5,10 +5,10 @@ class Booking < ApplicationRecord
   has_one :payment, dependent: :destroy
 
   enum status: {
-    pending: 0,
+    'Pending': 0,
     confirmed: 1,
-    checked_in: 2,
-    checked_out: 3,
+    'Checkin': 2,
+    'Checkout': 3,
     cancelled: 4,
   }
 

@@ -112,13 +112,17 @@
                       <td class="px-6 py-4">
                           <%= booking.status %>
                       </td>
-                      <td class="px-6 py-4">
-                          <div class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                            <%= link_to 'Show', booking %>
-                          </div>
+                      <td class="px-6 py-4 flex items-center gap-2">
+                          <%= link_to edit_booking_path(booking) do %>
+                            <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+                            </svg>
+                          <% end %>
                           <div x-data="{ open: false }">
-                            <div @click="open = true" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                              Payment
+                            <div @click="open = true" class="cursor-pointer">
+                              <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="square" stroke-linejoin="round" stroke-width="2" d="M16.5 15v1.5m0 0V18m0-1.5H15m1.5 0H18M3 9V6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v3M3 9v6a1 1 0 0 0 1 1h5M3 9h16m0 0v1M6 12h3m12 4.5a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Z"/>
+                              </svg>
                             </div>
                             <!-- Main modal -->
                             <div x-show="open" tabindex="-1" aria-hidden="true" class="fixed inset-0 flex items-center justify-center z-50" style="background-color: rgba(0,0,0,.5)">
@@ -140,10 +144,6 @@
                                         <!-- Modal body -->
                                         <div class="p-4 md:p-5 space-y-4">
                                             <%= render 'payments/form', payment: booking.payment %>
-                                        </div>
-                                        <!-- Modal footer -->
-                                        <div class="flex justify-end items-center gap-4 p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                            <button @click="open = false" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Decline</button>
                                         </div>
                                     </div>
                                 </div>

@@ -7,6 +7,11 @@ class HomeController < ApplicationController
     @bookings.each do |booking|
       @totalPayment += booking.payment.totalPrice
     end
+    @allUsers = User.where(role: 'user')
+    @activeUsers = User.where(role: 'user', status: true)
+    @availableParkingSlots = ParkingSlot.where(:status => true)
+    @bookedToday = Booking.where(startTime: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+    @allVehicles = Vehicle.all
   end
 
   def chart_data
@@ -48,41 +53,23 @@ class HomeController < ApplicationController
     render json: data
   end
 
-  def monthly_revenue
-    # Fetch booking totals grouped by year and month
-    current_year = Date.today.year
-    previous_year = current_year - 1
-
-    # Fetch booking totals grouped by year and month
-    bookings_current_year = Booking.includes(:payment)
-                                   .where(startTime: (Date.new(current_year, 1, 1)..Date.new(current_year, 12, 31)))
-                                   .group_by_month(:startTime, format: "%Y-%m").sum("payments.totalPrice")
-    
-    bookings_previous_year = Booking.includes(:payment)
-                                    .where(startTime: (Date.new(previous_year, 1, 1)..Date.new(previous_year, 12, 31)))
-                                    .group_by_month(:startTime, format: "%Y-%m").sum("payments.totalPrice")
-
-    # Generate labels for all months of current and previous year
-    all_months = (Date.today.beginning_of_year..Date.today.end_of_year).map { |date| date.strftime("%Y-%m") }
-
-    data_current_year = all_months.map do |month|
-      {
-        month: month,
-        revenue: bookings_current_year[month] || 0
-      }
+  def revenue_data_for_last_7_days
+    data = (0..6).map do |i|
+      day = i.days.ago.to_date
+      revenue = Booking.joins(:payment)
+                       .where(created_at: day.beginning_of_day..day.end_of_day)
+                       .sum('payments.totalPrice')
+      { date: day.strftime('%A'), revenue: revenue }
     end
+    render json: data
+  end
 
-    data_previous_year = all_months.map do |month|
-      {
-        month: month,
-        revenue: bookings_previous_year[month] || 0
-      }
-    end
-
-    render json: {
-      current_year: data_current_year,
-      previous_year: data_previous_year
-    }
+  def vehicle_model_distribution
+    vehicle_model_distribution = Vehicle.joins(:vehicle_model)
+                                          .group('vehicle_models.brand')
+                                          .count
+                                          .map { |model, count| { name: model, data: count } }
+    render json: vehicle_model_distribution
   end
 
   def parking_data

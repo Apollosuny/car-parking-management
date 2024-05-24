@@ -4,7 +4,14 @@
       <%= render partial: "search/form", locals: { results: [] } %>
     </div>
     <div class="flex items-center justify-between flex-wrap mb-6">
-      <h1 class="text-3xl font-bold">Vehicle models</h1>
+      <h1 class="text-3xl font-bold">
+        Vehicle models
+        <% if @vehicle_models.any? %>
+          <span class="ml-1">(<%= @vehicle_models.length %>)</span>
+        <% else %>
+          <span class="ml-1">(0)</span>
+        <% end %>
+      </h1>
   
       <%= link_to new_vehicle_model_path do %>
         <button 

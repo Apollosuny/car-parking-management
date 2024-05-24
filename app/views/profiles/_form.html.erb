@@ -12,21 +12,21 @@
 <% end %>
 
   <div class="mb-6">
-        <%= form.label :fullName, class: label_class %>
-          <%= form.text_field :fullName, class: input_class %>
-      </div>
-  <div class="mb-6">
-    <%= form.label :image, class: label_class %>
-    <%= form.file_field :image, class: input_class %>
+    <%= form.label :fullName, class: label_class %>
+    <%= form.text_field :fullName, class: input_class %>
   </div>
   <div class="mb-6">
-        <%= form.label :phone, class: label_class %>
-          <%= form.text_field :phone, class: input_class %>
-      </div>
+    <%= form.label :image, class: label_class %>
+    <%= form.file_field :image, class: "block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
+  </div>
   <div class="mb-6">
-        <%= form.label :user_id, class: label_class %>
-          <%= form.text_field :user_id, class: input_class %>
-      </div>
+    <%= form.label :phone, class: label_class %>
+    <%= form.text_field :phone, class: input_class %>
+  </div>
+  <div class="mb-6">
+    <%= form.label :user_id, class: label_class %>
+    <%= form.text_field :user_id, class: input_class %>
+  </div>
 
 <%= form.submit class: button_class(theme: 'primary') %>
 

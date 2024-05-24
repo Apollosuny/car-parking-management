@@ -12,7 +12,8 @@ Rails.application.routes.draw do
 
     # Defines api route
     get 'api/booked_per_day', to: 'home#booked_per_day'
-    get 'api/monthly_revenue', to: 'home#monthly_revenue'
+    get 'api/revenue', to: 'home#revenue_data_for_last_7_days'
+    get 'api/vehicle_model_distribution', to: 'home#vehicle_model_distribution'
     mount Sidekiq::Web => '/sidekiq'
   end
 

@@ -1,10 +1,19 @@
-<div class="max-w-3xl mx-auto px-4">
-  <div class="flex items-center justify-between mb-6 flex-wrap">
-    <h1 class="font-bold text-3xl mb-6">Edit vehicle</h1>
-    <% if @vehicle.persisted? %>
-    <%= button_to 'Destroy', @vehicle, method: :delete, class: "text-red-700 underline", data: { turbo_confirm: 'Are you sure?' } %>
-    <% end %>
+<div class="p-4 sm:ml-64">
+  <div class="p-4 dark:border-gray-700 mt-14">
+    <div class="grid grid-cols-2">
+      <div class>
+        <div class="mb-6">
+          <h1 class="font-bold text-3xl mb-6">Edit vehicle</h1>
+        </div>
+      
+        <%= render 'form', vehicle: @vehicle %>
+      </div>
+      <div class="flex flex-col justify-center items-center">
+        <% if @vehicle.image.attached? %>
+          <%= image_tag(@vehicle.image, class: "w-30 h-30 object-cover rounded-lg") %>
+          <p class="mt-5 text-2xl font-semibold">Current image</p>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <%= render 'form', vehicle: @vehicle %>
 </div>

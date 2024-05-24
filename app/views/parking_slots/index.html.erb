@@ -1,7 +1,14 @@
 <div class="p-4 sm:ml-64">
   <div class="p-4 dark:border-gray-700 mt-14">
     <div class="flex items-center justify-between flex-wrap mb-6">
-      <h1 class="text-3xl font-bold">Parking slots</h1>
+      <h1 class="text-3xl font-bold">
+        Parking slots
+        <% if @parking_slots.any? %>
+          <span class="ml-1">(<%= @parking_slots.length %>)</span>
+        <% else %>
+          <span class="ml-1">(0)</span>
+        <% end %>
+      </h1>
   
       <%= link_to new_parking_slot_path do %>
       <button 
@@ -61,24 +68,37 @@
                       </th>
                       <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                           <% if parking_slot.price %>
-                          <%= parking_slot.price %>
+                          $<%= parking_slot.price %>
                           <% else %>
                           <div>--</div>
                           <% end %>
                       </th>
                       <td class="px-6 py-4">
-                          <%= parking_slot.created_at %>
+                          <%= parking_slot.created_at.strftime("%d - %m - %Y") %>
                       </td>
                       <td class="px-6 py-4">
-                          <%= parking_slot.updated_at %>
+                          <%= parking_slot.updated_at.strftime("%d - %m - %Y") %>
                       </td>
                       <td class="px-6 py-4">
                           <%= parking_slot.status %>
                       </td>
-                      <td class="px-6 py-4">
-                          <div class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                            <%= link_to 'Show', parking_slot %>
-                          </div>
+                      <td class="px-6 py-4 flex items-center gap-2">
+                        <div>
+                          <%= link_to edit_parking_slot_path(parking_slot) do %>
+                            <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+                            </svg>
+                          <% end %>
+                        </div>
+                        <div>
+                          <% if parking_slot.persisted? %>
+                            <%= button_to parking_slot, method: :delete, data: { turbo_confirm: 'Are you sure?' } do %>
+                              <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+                              </svg>
+                            <% end %>
+                          <% end %>
+                        </div>
                       </td>
                   </tr>
                 <% end %>

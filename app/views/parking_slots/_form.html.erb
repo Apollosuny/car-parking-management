@@ -12,7 +12,7 @@
 <% end %>
 
   <div class="mb-6">
-    <%= form.label :slotNumber, class: label_class %>
+    <%= form.label "Slot number", class: label_class %>
       <%= form.number_field :slotNumber, class: input_class %>
   </div>
 
@@ -21,16 +21,18 @@
     <%= form.number_field :price, step: :any, class: input_class %>
   </div>
 
-  <div class="mb-6">
-    <%= form.label :status, class: label_class %>
-    <%= form.check_box :status, step: :any, class: input_class %>
-  </div>
+  <% if parking_slot.persisted? %>
+    <div class="mb-6">
+      <%= form.label :status, class: label_class %>
+      <%= form.check_box :status, step: :any, class: "w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" %>
+    </div>
+  <% end %>
 
-<%= form.submit class: button_class(theme: 'primary') %>
+<%= form.submit class: "text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" %>
 
 <% if parking_slot.persisted? %>
-<%= link_to "Cancel", parking_slot, class: "text-neutral-700 underline inline-block ml-3" %>
+<%= link_to "Cancel", parking_slot, class: "text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" %>
 <% else %>
-<%= link_to "Cancel", parking_slots_path, class:  "text-neutral-700 underline inline-block ml-3" %>
+<%= link_to "Cancel", parking_slots_path, class:  "text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" %>
 <% end %>
 <% end %>

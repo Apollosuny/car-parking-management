@@ -9,6 +9,7 @@ class BookingsController < ApplicationController
       @bookings = Booking.where(:user_id => current_user.id)
     end
     @payment_types = PaymentType.all
+    @vehicles = Vehicle.where(:user_id => current_user.id)
   end
 
   # GET /bookings/1 or /bookings/1.json

@@ -1,30 +1,37 @@
 <div class="p-4 sm:ml-64">
   <div class="p-4 dark:border-gray-700 mt-14">
     <div class="flex items-center justify-between flex-wrap mb-6">
-      <h1 class="text-3xl font-bold">Bookings</h1>
+      <div>
+        <h1 class="text-3xl font-bold">Bookings</h1>
+        <% if !@vehicles.any? %>
+        <p class="text-xs text-gray-900 dark:text-white mt-2">*Please add a vehicle to create new booking</p>
+        <% end %>
+      </div>
   
-      <%= link_to new_booking_path do %>
-        <button 
-          type="button" 
-          class="text-white 
-          bg-gradient-to-br 
-          
-          from-purple-600 
-          to-blue-500 
-          hover:bg-gradient-to-bl 
-          focus:ring-4 
-          focus:outline-none 
-          focus:ring-blue-300 
-          dark:focus:ring-blue-800 
-          font-medium 
-          rounded-lg 
-          text-sm 
-          px-5 
-          py-2.5 
-          text-center 
-          me-2 
-          mb-2"
-        >Create new booking</button>
+      <% if @vehicles.any? %>
+        <%= link_to new_booking_path do %>
+          <button 
+              type="button" 
+              class="text-white 
+              bg-gradient-to-br 
+              
+              from-purple-600 
+              to-blue-500 
+              hover:bg-gradient-to-bl 
+              focus:ring-4 
+              focus:outline-none 
+              focus:ring-blue-300 
+              dark:focus:ring-blue-800 
+              font-medium 
+              rounded-lg 
+              text-sm 
+              px-5 
+              py-2.5 
+              text-center 
+              me-2 
+              mb-2"
+            >Create new booking</button>
+        <% end %>
       <% end %>
     </div>
 

@@ -25,7 +25,7 @@ class PaymentTypesController < ApplicationController
 
     respond_to do |format|
       if @payment_type.save
-        format.html { redirect_to payment_type_url(@payment_type), notice: "Payment type was successfully created." }
+        format.html { redirect_to payment_type_path, notice: "Payment type was successfully created." }
         format.json { render :show, status: :created, location: @payment_type }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class PaymentTypesController < ApplicationController
   def update
     respond_to do |format|
       if @payment_type.update(payment_type_params)
-        format.html { redirect_to payment_type_url(@payment_type), notice: "Payment type was successfully updated." }
+        format.html { redirect_to payment_type_path, notice: "Payment type was successfully updated." }
         format.json { render :show, status: :ok, location: @payment_type }
       else
         format.html { render :edit, status: :unprocessable_entity }

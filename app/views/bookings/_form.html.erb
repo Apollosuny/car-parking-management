@@ -16,9 +16,9 @@
     <%= form.collection_select :parking_slot_id, @parking_slots, :id, :slotNumber, { prompt: "Select a slot" }, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
   </div>
   <div class="mb-6">
-        <%= form.label :vehicle_id, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-          <%= form.collection_select :vehicle_id, @vehicles, :id, :vehicleRegistrationPlate, { prompt: "Select a vehicle" }, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
-      </div>
+    <%= form.label :vehicle_id, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+    <%= form.collection_select :vehicle_id, @vehicles, :id, :vehicleRegistrationPlate, { prompt: "Select a vehicle" }, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+  </div>
   <div class="mb-6">
         <%= form.label 'Start Time', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
           <%= form.datetime_field :startTime, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>

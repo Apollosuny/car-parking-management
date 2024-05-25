@@ -1,8 +1,12 @@
 class Booking < ApplicationRecord
+  #relations
   belongs_to :parking_slot
   belongs_to :vehicle
   belongs_to :user
   has_one :payment, dependent: :destroy
+
+  #validate
+  validates_presence_of :startTime, :endTime
 
   enum status: {
     'Pending': 0,

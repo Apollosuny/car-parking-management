@@ -40,7 +40,7 @@ class PaymentsController < ApplicationController
     respond_to do |format|
       if @payment.update(payment_params.merge(status: true))
         update_booking_and_parking_slot_status(@payment.booking_id)
-        format.html { redirect_to payment_url(@payment), notice: "Payment was successfully updated." }
+        format.html { redirect_to bookings_path, notice: "Payment was successfully updated." }
         format.json { render :show, status: :ok, location: @payment }
       else
         format.html { render :edit, status: :unprocessable_entity }

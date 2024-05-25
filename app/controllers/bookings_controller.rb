@@ -53,7 +53,7 @@ class BookingsController < ApplicationController
           )
 
           if @payment.save
-            format.html { redirect_to booking_url(@booking), notice: "Booking and payment were successfully created." }
+            format.html { redirect_to bookings_path, notice: "Booking and payment were successfully created." }
             format.json { render :show, status: :created, location: @booking }
           else
             format.html { render :new, status: :unprocessable_entity }

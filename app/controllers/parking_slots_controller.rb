@@ -26,7 +26,7 @@ class ParkingSlotsController < ApplicationController
 
     respond_to do |format|
       if @parking_slot.save
-        format.html { redirect_to parking_slot_url(@parking_slot), notice: "Parking slot was successfully created." }
+        format.html { redirect_to parking_slot_path, notice: "Parking slot was successfully created." }
         format.json { render :show, status: :created, location: @parking_slot }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class ParkingSlotsController < ApplicationController
   def update
     respond_to do |format|
       if @parking_slot.update(parking_slot_params)
-        format.html { redirect_to parking_slot_url(@parking_slot), notice: "Parking slot was successfully updated." }
+        format.html { redirect_to parking_slot_path, notice: "Parking slot was successfully updated." }
         format.json { render :show, status: :ok, location: @parking_slot }
       else
         format.html { render :edit, status: :unprocessable_entity }

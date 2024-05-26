@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   has_person_name
-  has_one :profile
-  has_many :vehicle
-  has_many :booking
+  has_one :profile, dependent: :destroy
+  has_many :vehicle, dependent: :destroy
+  has_many :booking, dependent: :destroy
 
   # validate data
   validates :username, presence: true, uniqueness: true

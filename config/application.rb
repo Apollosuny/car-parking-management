@@ -19,6 +19,6 @@ module CarParkingManagement
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.hosts << "library-app-production-5dbc.up.railway.app"
+    config.hosts << "ffb6-116-99-2-58.ngrok-free.app"
   end
 end

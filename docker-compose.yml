@@ -26,7 +26,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 3000:3000
+      - "3000:3000"
     volumes:
       - bundle_cache:/bundle:cached
       - .:/app
@@ -38,7 +38,6 @@ services:
     command: ["sh", "-c", "/scripts/command.sh && tail -f /dev/null"]
     stdin_open: true
     tty: true
-
 volumes:
   postgres-data:
     driver: local

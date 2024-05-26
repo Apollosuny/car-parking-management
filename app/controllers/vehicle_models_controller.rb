@@ -25,7 +25,7 @@ class VehicleModelsController < ApplicationController
 
     respond_to do |format|
       if @vehicle_model.save
-        format.html { redirect_to vehicle_model_path, notice: "Vehicle model was successfully created." }
+        format.html { redirect_to vehicle_models_url, notice: "Vehicle model was successfully created." }
         format.json { render :show, status: :created, location: @vehicle_model }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class VehicleModelsController < ApplicationController
   def update
     respond_to do |format|
       if @vehicle_model.update(vehicle_model_params)
-        format.html { redirect_to vehicle_model_path, notice: "Vehicle model was successfully updated." }
+        format.html { redirect_to vehicle_models_url, notice: "Vehicle model was successfully updated." }
         format.json { render :show, status: :ok, location: @vehicle_model }
       else
         format.html { render :edit, status: :unprocessable_entity }

@@ -44,3 +44,7 @@ Access PostgreSQL by psql
 ```bash
 psql -U <username> -d <database_name>
 ```
+
+### Link Lecture
+
+https://docs.google.com/presentation/d/1XLmCUvWkW7NCgQR-k5RtP6zTHQWx-RYn9Hz62kNJ_u8/edit#slide=id.g1cf26bf0732_1_59
